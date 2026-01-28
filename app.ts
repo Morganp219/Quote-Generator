@@ -1,6 +1,25 @@
 import express from 'express';
 import cors from "cors"
 
+interface Quote {
+     message: string 
+     author: string
+     title: string | undefined
+}
+
+let items: Quote[] = [
+     {
+          message: "Some Message Goes Here",
+          author: "Me",
+          title: undefined
+     },
+     {
+          message: "Hello World",
+          author: "First Dev",
+          title: "UH OH!"
+     }
+]
+
 const app = express()
 
 app.use(cors())
@@ -10,11 +29,9 @@ app.get('/', (request, response) => {
 })
 
 app.get('/getDailyJoke', (request, response) => {
-     response.send({
-        title: "Our First Quote",
-        message: "lorem ipsum dolar emit",
-        author: "Me",
-     })
+     const randomQuote: Quote = items[Math.floor(Math.random() * items.length)]
+     
+     response.send(randomQuote)
 })
 
 app.listen(3000, () => {
