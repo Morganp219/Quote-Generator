@@ -108,7 +108,7 @@ app.get('/', (request, response) => {
      response.send("Welcome to the Quote Server!")
 })
 
-app.get('/getDailyJoke', (request, response) => {
+app.get('/getDailyQuote', (request, response) => {
      const randomQuote: Quote = items[Math.floor(Math.random() * items.length)]
      
      response.send(randomQuote)
